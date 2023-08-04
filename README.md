@@ -16,4 +16,4 @@ Gráfica de barras vertical con información de la edad de las novias que ha ten
 
 En la parte superior se agregó información como el nombre de la novia, su edad y la diferencia de edades entre ellos.
 Se asignó un color diferente a las barras correspondiente a cada novia
-
+Puedes seleccionar una barra de la gráfica para que te muestre la información
