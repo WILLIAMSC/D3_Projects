@@ -1,0 +1,61 @@
+.novia {
+}
+
+text.title {
+    font-size: x-large;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#linea {
+    fill: none;
+    stroke-width: 1px;
+    stroke: black;
+}
+
+.Gisele {
+    fill: #99d98c;
+}
+
+.Bar {
+    fill: #76c893;
+}
+
+.Blake {
+    fill: #52b69a;
+}
+
+.Erin {
+    fill: #34a0a4;
+}
+
+.Toni {
+    fill: #168aad;
+}
+
+.Kelly {
+    fill: #1a759f;
+}
+
+.Nina {
+    fill: #1e6091;
+}
+
+.Camila {
+    fill: #184e77;
+}
+
+/*Paleta de colores de: https://coolors.co/palettes/trending*/
+
+g.show {
+    visibility: visible !important;
+}
+
+g.hide {
+    visibility: hidden;
+}
+
+g.tipGroup {
+    font-weight: bold;
+    text-align: center;
+}
