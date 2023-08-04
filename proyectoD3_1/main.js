@@ -57,6 +57,16 @@ d3.csv("WorldCup.csv").then((data) => {
 
     originalData = data;
 
+    x.domain([0, 5]); //
+    y.domain(data.map((d) => d.Winner));
+
+    const xAxis = d3.axisBottom().scale(x).ticks(5);
+
+    const yAxis = d3.axisLeft().scale(y);
+
+    xAxisGroup.call(xAxis);
+    yAxisGroup.call(yAxis);
+
     // update:
     update(data);
 
@@ -68,14 +78,6 @@ function update(data) {
     // 3. función que actualiza el gráfico
     winners = data.map((d) => d.Winner);
 
-    x.domain([0, 5]); //
-    y.domain(winners);
-
-    xAxis.ticks(5);
-
-    xAxisGroup.call(xAxis);
-    yAxisGroup.call(yAxis);
-
     const elements = elementGroup.selectAll("rect").data(winners);
 
     elements
@@ -85,23 +87,16 @@ function update(data) {
         .attr("x", (d) => x(d))
         .attr("y", (d) => y(d))
         .attr("width", (d) => x(winners.filter((item) => item === d).length))
-        //.attr(
-        //    "width",
-        //    (d) =>
-        //        width -
-        //        margin.left -
-        //        margin.right -
-        //        x(winners.filter((item) => item === d).length)
-        //)
         .attr("height", y.bandwidth());
 
     elements
+        .transition()
+        .duration(100)
         .attr("x", (d) => x(d))
         .attr("y", (d) => y(d))
-        .transition()
-        .duration(500)
-        .attr("width", (d) => x(winners.filter((item) => item === d).length));
-    //.attr("height", y.bandwidth());
+
+        .attr("width", (d) => x(winners.filter((item) => item === d).length))
+        .attr("height", y.bandwidth());
 
     elements.exit().remove();
 }
@@ -140,12 +135,14 @@ function slider() {
     var gTime = d3
         .select("div#slider-time") // div donde lo insertamos
         .append("svg")
-        .attr("width", width * 0.8)
+        .attr("width", width)
         .attr("height", 100)
         .append("g")
-        .attr("transform", "translate(30,30)");
+        .attr("transform", "translate(150,30)");
 
     gTime.call(sliderTime); // invocamos el slider en el contenedor
 
-    d3.select("p#value-time").text(sliderTime.value()); // actualiza el año que se representa
+    d3.select("p#value-time").text(sliderTime.value());
+
+    // actualiza el año que se representa
 }
