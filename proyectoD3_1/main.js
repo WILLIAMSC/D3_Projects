@@ -3,7 +3,7 @@
 const width = 800;
 const height = 600;
 const margin = {
-    top: 10,
+    top: 30,
     bottom: 40,
     left: 80,
     right: 10,
@@ -33,6 +33,15 @@ const yAxisGroup = axis
     .attr("class", "yAxisGroup")
     .attr("transform", `translate(${margin.left},${margin.top})`);
 
+yAxisGroup.select(".domain").remove();
+yAxisGroup
+    .append("text")
+    .attr("class", "title-x")
+    .attr("fill", "black")
+    .attr("y", 565)
+    .attr("x", width / 2)
+    .text("Campeonatos Ganados");
+
 const x = d3.scaleLinear().range([0, width - margin.left - margin.right]);
 const y = d3
     .scaleBand()
@@ -41,6 +50,14 @@ const y = d3
 
 const xAxis = d3.axisBottom().scale(x);
 const yAxis = d3.axisLeft().scale(y);
+
+let title = svg
+    .append("g")
+    .attr("class", "title")
+    .append("text")
+    .text("Grafica de barras animada")
+    .attr("transform", `translate(${width / 2},${margin.top / 2})`)
+    .attr("text-anchor", "middle");
 
 let years;
 let winners;
@@ -121,7 +138,7 @@ function slider() {
         .min(d3.min(years)) // rango años
         .max(d3.max(years))
         .step(4) // cada cuánto aumenta el slider (4 años)
-        .width(580) // ancho de nuestro slider en px
+        .width(550) // ancho de nuestro slider en px
         .ticks(years.length)
         .default(years[years.length - 1]) // punto inicio del marcador
         .on("onchange", (val) => {
@@ -138,11 +155,11 @@ function slider() {
         .attr("width", width)
         .attr("height", 100)
         .append("g")
-        .attr("transform", "translate(150,30)");
+        .attr("transform", "translate(170,30)");
 
     gTime.call(sliderTime); // invocamos el slider en el contenedor
 
-    d3.select("p#value-time").text(sliderTime.value());
+    d3.select("p#value-time").text("Año:  " + sliderTime.value());
 
     // actualiza el año que se representa
 }

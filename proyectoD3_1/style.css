@@ -1,3 +1,18 @@
 rect.bar {
     fill: rgb(47, 101, 201);
 }
+
+#value-time {
+    text-align: center;
+    font-size: medium;
+}
+
+.title {
+    font-size: large;
+    font-weight: bold;
+}
+
+.title-x {
+    font-weight: bold;
+    font-size: 12px;
+}
